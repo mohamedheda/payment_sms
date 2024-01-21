@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Services\Api\V1\Auth\AuthMobileService;
 use App\Http\Services\Api\V1\Auth\AuthService;
 use App\Http\Services\Api\V1\Auth\AuthWebService;
 use Illuminate\Support\ServiceProvider;
@@ -19,7 +20,8 @@ class PlatformServiceProvider extends ServiceProvider
 //   Version => Services
         1 => [
             AuthService::class => [
-                'website' => AuthWebService::class
+                'website' => AuthWebService::class,
+                'mobile' => AuthMobileService::class
             ]
         ],
     ];

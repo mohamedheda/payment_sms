@@ -15,10 +15,8 @@ class UserRepository extends Repository implements UserRepositoryInterface
         parent::__construct($model);
     }
 
-    public function updatePasswordByEmail($email, $password)
+    public function getActiveUsers()
     {
-        $user = $this->first('email', $email);
-
-        return $user->update(['password' => $password]);
+        return $this->model::query()->where('is_active', true);
     }
 }

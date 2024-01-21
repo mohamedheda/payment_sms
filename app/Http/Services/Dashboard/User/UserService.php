@@ -71,4 +71,14 @@ class UserService
             return back()->with(['error' => __('messages.Something went wrong')]);
         }
     }
+
+    public function showActiveUsers()
+    {
+        $users = $this->userRepository->getActiveUsers();
+
+        // do something with $users
+        // ...
+        // ...
+        // return ...
+    }
 }

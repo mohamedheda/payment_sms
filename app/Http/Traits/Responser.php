@@ -6,7 +6,6 @@ use App\Http\Helpers\Http;
 
 trait Responser
 {
-
     private function responseSuccess($status = Http::OK, $message = 'Success', $data = []) {
         return response()->json([
             'status' => $status,
@@ -30,5 +29,4 @@ trait Responser
             'data' => $data
         ], $status);
     }
-
 }

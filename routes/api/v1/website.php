@@ -9,4 +9,5 @@ Route::group(['prefix' => 'auth', 'controller' => AuthController::class], functi
         Route::post('up', 'signUp');
         Route::post('out', 'signOut');
     });
+    Route::get('what-is-my-platform', 'whatIsMyPlatform'); // returns 'platform: website!'
 });
