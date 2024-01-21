@@ -1,10 +1,9 @@
 
 # Backend Initial Project
-This project serves as the foundation for a robust backend future projects developed using the Laravel PHP framework. It includes essential features and components for a good start.
-
+This project serves as the foundation for future robust backend projects developed using the Laravel PHP framework. It incorporates essential features and components to provide a solid starting point.
 ## Requirements
 
-- Local server, e.g., XAMPP, WAMP, Laragon. Laragon is prefered.
+- Local server, e.g., XAMPP, WAMP, Laragon (Laragon is preferred).
 
 - PHP 8.1 (Required for Laravel 10).
 
@@ -55,13 +54,11 @@ Rename `.env.example` file to `.env`, then generate your Laravel app key.
 ```
 
 ## Documentation
-This initial project is a start point which you can use to save your time in the future backend projects. Implemented an up-to-date structure to deal with every part of your project, e.g., Service Pattern, Repository Pattern, a pre-built and customized AdminLTE dashboard with the most common components, some traits and helper files to save your time on routine work. Every new implementation of these has an approach for dealing with it and it will be fully explained in this documentation by catching any file that is foreign to the origin of usual Laravel projects and explaining it.
-
+This initial project serves as a starting point to save time in future backend projects. It implements an up-to-date structure to handle every aspect of your project, including Service Pattern, Repository Pattern, a pre-built and customized AdminLTE dashboard with common components, along with traits and helper files to streamline routine tasks. Each new implementation is explained in detail in this documentation, covering any files that differ from typical Laravel projects.
 ### Service Pattern:
-In `app/Http/Services` folder, you will find classes with the same structuring of controllers. It's the place where you can write your business logic in small separted methods to be called from the controllers.
-
+In the app/Http/Services folder, you'll find classes with the same structure as controllers. This is where you can write your business logic in small, separated methods to be called from controllers.
 #### Example:
-If we have `AuthController` contains methods `signUp()`, `signIn()`, `signOut()` and `refreshToken()`, surely we will create routes for it, then implement the methods for these routes inside the controller. The logic of these methods should be written insdie service class, e.g., `AuthService`.
+If we have an AuthController with methods like signUp(), signIn(), signOut(), and refreshToken(), we create routes for them. The logic of these methods should be written inside a service class, e.g., `AuthService`.
 
 `AuthService` will have the same methods of `AuthController` but with the required business logic, then `AuthService` will be injected to `AuthController` to make its methods accessible.
 
@@ -166,12 +163,12 @@ abstract class AuthService
 **Note:** You can make service class for other service class as a helper, in an endless way as you want.
 
 ### Controllers:
-Controllers are base classes in the MVC pattern, so we will talk about the approach which we will follow in dealing with it.
+Controllers are base classes in the MVC pattern. In this structure, controllers act as mediators between routes and service classes. They are not meant for business logic; their role is to pass the called request to the right service method.
 - Controllers are not a place to any peace of business logic code.
 - Controllers' job in this structure is to pass the called request to the right service method. So it's only a mediator between the routes and the service classes.
 
 ### Repository Pattern:
-The Repository Design Pattern is a structural pattern that acts as a middleman between the application’s data access layer (usually the database) and the rest of the application. Its primary goal is to isolate the data persistence logic, allowing developers to switch between different data sources without affecting the rest of the application’s code.
+The Repository Design Pattern acts as a middleman between the application’s data access layer and the rest of the application. It isolates data persistence logic, allowing developers to switch between different data sources without affecting the codebase. This pattern is already implemented in the project, providing code organization, reusability, testability, and flexibility.
 
 In Laravel, repositories are often used to encapsulate database queries and provide an extra layer of abstraction. This separation of concerns improves code maintainability, testability, and scalability.
 
@@ -484,7 +481,7 @@ class AuthMobileService extends AuthService
 
 ### Useful Traits and Service Classes:
 #### app/Http/Traits/Responser
-It's a simple trait can be used to standardize the way you provide API responses in your Laravel application.
+A trait to standardize API response formatting in your Laravel application.
 ```php
 <?php
 
@@ -524,9 +521,7 @@ trait Responser
 
 #### app/Http/Services/Mutual/GetService
 
-It's a service class depends on `Responser` trait which is very useful to save time to build a json response of a result of a query.
-
-You can pass to the `handle()` method a resource class, a repository object, method which will be invoked from the repository, parameters of the method in case of need, a boolean parameter to decide if the response will be treated as a collection or a resource object, custom message with the response and if there custom parameters you need to pass in the resource instance.
+A service class that simplifies building JSON responses for query results. Pass a resource class, repository object, method, parameters, and other options to get a standardized JSON response.
 
 ```php
 <?php
@@ -578,7 +573,7 @@ abstract class AuthService
     
     public function getAllUsers()
     {
-        return $this->get->handle(UserResource::class, $this->userRepository, 'getAll', [], false)
+        return $this->get->handle(UserResource::class, $this->userRepository, 'getAll')
     }
 }
 ```
