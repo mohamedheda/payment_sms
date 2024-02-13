@@ -37,6 +37,7 @@ class RouteServiceProvider extends ServiceProvider
                     Route::prefix('api/v1')->group(function () {
                         Route::prefix('website')->group(base_path('routes/api/v1/website.php'));
                         Route::prefix('mobile')->group(base_path('routes/api/v1/mobile.php'));
+                        Route::prefix('dashboard')->group(base_path('routes/api/v1/dashboard.php'));
                     });
                 });
 
@@ -51,6 +52,7 @@ class RouteServiceProvider extends ServiceProvider
                     Route::prefix('api/v1')->group(function () {
                         Route::prefix('website')->group(base_path('routes/api/v1/website.php'));
                         Route::prefix('mobile')->group(base_path('routes/api/v1/mobile.php'));
+                        Route::prefix('dashboard')->group(base_path('routes/api/v1/dashboard.php'));
                     });
                 });
 
