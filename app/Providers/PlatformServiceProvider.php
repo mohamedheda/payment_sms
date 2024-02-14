@@ -6,6 +6,7 @@ use App\Http\Services\Api\V1\Auth\AuthMobileService;
 use App\Http\Services\Api\V1\Auth\AuthService;
 use App\Http\Services\Api\V1\Auth\AuthWebService;
 use Illuminate\Support\ServiceProvider;
+use function Laravel\Prompts\select;
 
 class PlatformServiceProvider extends ServiceProvider
 {
@@ -39,6 +40,10 @@ class PlatformServiceProvider extends ServiceProvider
                 if (request()->is($pattern)) {
                     $this->version = $version;
                     $this->platform = $platform;
+                } else {
+                    // In case the version and the platform cannot be assigned, assign the first values instead as fallback data
+                    $this->version = self::VERSIONS[0];
+                    $this->platform = self::PLATFORMS[0];
                 }
             }
         }
