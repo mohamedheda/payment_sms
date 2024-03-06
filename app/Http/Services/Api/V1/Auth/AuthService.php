@@ -5,12 +5,13 @@ namespace App\Http\Services\Api\V1\Auth;
 use App\Http\Requests\Api\V1\Auth\SignInRequest;
 use App\Http\Requests\Api\V1\Auth\SignUpRequest;
 use App\Http\Resources\V1\User\UserResource;
+use App\Http\Services\PlatformService;
 use App\Http\Traits\Responser;
 use App\Repository\UserRepositoryInterface;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
-abstract class AuthService
+abstract class AuthService extends PlatformService
 {
     use Responser;
 
