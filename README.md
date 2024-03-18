@@ -1,5 +1,5 @@
 
-# Backend Initial Project
+# Elryad's Backend Initial Project
 This project serves as the foundation for future robust backend projects developed using the Laravel PHP framework. It incorporates essential features and components to provide a solid starting point.
 ## Requirements
 
@@ -15,18 +15,18 @@ This project serves as the foundation for future robust backend projects develop
   git clone https://github.com/elryad-web/initial-backend-project.git
 ```
 
+- Install composer packages:
+
+```bash
+  composer install
+```
+
 - Setup your environment:
 
 Rename `.env.example` file to `.env`, then generate your Laravel app key.
 
 ```bash
   php artisan key:generate
-```
-
-- Install composer packages:
-
-```bash
-  composer install
 ```
 
 - Generate new JWT secret key:
