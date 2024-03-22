@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use App\Http\Helpers\Http;
 use App\Http\Traits\Responser;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -52,20 +53,20 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $e): mixed
     {
         if ($e instanceof TokenExpiredException) {
-            return $this->responseFail(status: 401, message: 'Token expired');
+            return $this->responseFail(status: Http::UNAUTHORIZED, message: 'Token expired');
         }
         if ($e instanceof TokenBlacklistedException) {
-            return $this->responseFail(status: 401, message: 'Token blacklisted');
+            return $this->responseFail(status: Http::UNAUTHORIZED, message: 'Token blacklisted');
         }
         if ($e instanceof TokenInvalidException) {
-            return $this->responseFail(status: 401, message: 'Token invalid');
+            return $this->responseFail(status: Http::UNAUTHORIZED, message: 'Token invalid');
         }
         if ($e instanceof JWTException) {
-            return $this->responseFail(status: 401, message: 'JWT error');
+            return $this->responseFail(status: Http::UNAUTHORIZED, message: 'JWT error');
         }
         if ($e instanceof AuthenticationException) {
-            if($request->expectsJson()) {
-                return $this->responseFail(status: 401, message: 'Unauthenticated');
+            if ($request->expectsJson()) {
+                return $this->responseFail(status: Http::UNAUTHORIZED, message: 'Unauthenticated');
             } else {
                 return redirect()->route('auth.login');
             }
@@ -77,9 +78,8 @@ class Handler extends ExceptionHandler
     protected function convertValidationExceptionToResponse(ValidationException $e, $request)
     {
         $errors = $e->validator->errors()->all();
-        if($this->isFrontend($request))
-        {
-            return $request->ajax() ? response()->json($errors , 422) : redirect()->back()->withInput($request->input())->withErrors($errors);
+        if ($this->isFrontend($request)) {
+            return $request->ajax() ? response()->json($errors, Http::UNPROCESSABLE_ENTITY) : redirect()->back()->withInput($request->validated())->withErrors($errors);
         }
 
         return $this->responseFail(message: 'Validation error', data: $errors);
