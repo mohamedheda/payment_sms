@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Website\Paypal\PaypalController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('handle',[PaypalController::class,'handle'])->name('handle.payment');
+Route::get('paypal/success',[PaypalController::class,'success'])->name('paypal.success');
+Route::get('paypal/cancel',[PaypalController::class,'cancel'])->name('paypal.cancel');

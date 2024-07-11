@@ -4,6 +4,7 @@ use App\Providers\PlatformServiceProvider;
 use App\Providers\RepositoryServiceProvider;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
+use Srmklive\PayPal\Providers\PayPalServiceProvider;
 
 return [
 
@@ -172,6 +173,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         RepositoryServiceProvider::class,
         PlatformServiceProvider::class,
+        PayPalServiceProvider::class
     ])->toArray(),
 
     /*
@@ -187,6 +189,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        'PayPal' => Srmklive\PayPal\Facades\PayPal::class
     ])->toArray(),
 
 ];

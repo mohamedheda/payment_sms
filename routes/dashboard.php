@@ -19,7 +19,7 @@ Route::group([
     });
 
     Route::group(['middleware' => 'auth'], function () {
-        Route::get('/', [HomeController::class, 'index'])->name('/');
+//        Route::get('/', [HomeController::class, 'index'])->name('/');
         Route::resource('users', UserController::class);
     });
 });
